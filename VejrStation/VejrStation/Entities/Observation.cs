@@ -8,6 +8,7 @@ namespace VejrStation.Entities
 {
     public class Observation
     {
+        public string ObservationId { get; set; }
         public DateTime DateObserved { get; set; }  //The date and time the observation were made
         public string locationName { get; set; }    //The location name for the observation
         public string locationLat { get; set; }     //gps coordinates Latitude
