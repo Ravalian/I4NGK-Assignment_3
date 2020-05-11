@@ -38,7 +38,7 @@ namespace VejrStation
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MyDBContext context)
         {
             if (env.IsDevelopment())
             {
@@ -55,6 +55,8 @@ namespace VejrStation
             {
                 endpoints.MapControllers();
             });
+
+            Seeddata.SeedData(context);
         }
     }
 }

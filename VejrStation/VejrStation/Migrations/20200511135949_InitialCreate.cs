@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VejrStation.Migrations
 {
-    public partial class intialcreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,14 +50,15 @@ namespace VejrStation.Migrations
                 name: "Observations",
                 columns: table => new
                 {
-                    ObservationId = table.Column<string>(nullable: false),
+                    ObservationId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     DateObserved = table.Column<DateTime>(nullable: false),
                     locationName = table.Column<string>(nullable: true),
-                    locationLat = table.Column<string>(nullable: true),
-                    locationLot = table.Column<string>(nullable: true),
-                    Temperature = table.Column<float>(nullable: false),
+                    locationLat = table.Column<double>(nullable: false),
+                    locationLot = table.Column<double>(nullable: false),
+                    Temperature = table.Column<double>(nullable: false),
                     Humidity = table.Column<int>(nullable: false),
-                    AirPressure = table.Column<float>(nullable: false)
+                    AirPressure = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -217,11 +217,13 @@ namespace VejrStation.Migrations
 
             modelBuilder.Entity("VejrStation.Entities.Observation", b =>
                 {
-                    b.Property<string>("ObservationId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ObservationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<float>("AirPressure")
-                        .HasColumnType("real");
+                    b.Property<double>("AirPressure")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("DateObserved")
                         .HasColumnType("datetime2");
@@ -229,14 +231,14 @@ namespace VejrStation.Migrations
                     b.Property<int>("Humidity")
                         .HasColumnType("int");
 
-                    b.Property<float>("Temperature")
-                        .HasColumnType("real");
+                    b.Property<double>("Temperature")
+                        .HasColumnType("float");
 
-                    b.Property<string>("locationLat")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("locationLat")
+                        .HasColumnType("float");
 
-                    b.Property<string>("locationLot")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("locationLot")
+                        .HasColumnType("float");
 
                     b.Property<string>("locationName")
                         .HasColumnType("nvarchar(max)");
