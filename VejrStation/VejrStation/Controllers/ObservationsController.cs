@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -51,9 +52,9 @@ namespace VejrStation.Controllers
         {
             //DateTime tempDate = DateTime.Parse(date.ToString());
 
-            List<Observation> observations = _context.Observations
+            List<Observation> observations = await _context.Observations
                 .Where(a => a.DateObserved.Date == date.Date)
-                .ToList();
+                .ToListAsync();
 
             if (observations[0] == null) //If there is no observations on the first element in the array return notfound
             {
@@ -68,9 +69,9 @@ namespace VejrStation.Controllers
         [ActionName("StartStop")]
         public async Task<ActionResult<object>> GetObservationsStartStop(DateTime date1, DateTime date2)
         {
-            List<Observation> observations = _context.Observations
+            List<Observation> observations = await _context.Observations
                 .Where(a => a.DateObserved.Date >= date1.Date && a.DateObserved.Date <= date2.Date)
-                .ToList();
+                .ToListAsync();
 
             if (observations[0] == null) //If there is no observations on the first element in the array return notfound
             {
@@ -87,14 +88,13 @@ namespace VejrStation.Controllers
         {
             //string temp = latest;
 
-            int maxID = _context.Observations.Max(a => a.ObservationId);
+            int maxID = await _context.Observations.MaxAsync(a => a.ObservationId);
 
-            List<Observation> observations = _context.Observations
+            List<Observation> observations = await _context.Observations
                 .Where(a => a.ObservationId >= maxID - 2)
-                .ToList();
+                .ToListAsync();
 
-            if (observations[0] == null
-            ) //If there is no observations on the first element in the array return notfound
+            if (observations[0] == null) //If there is no observations on the first element in the array return notfound
             {
                 return NotFound();
             }
@@ -102,15 +102,14 @@ namespace VejrStation.Controllers
             return observations;
         }
 
-
-
+        [Authorize] //Can only crete new observation if you are logged in.
         [HttpPost]
         public async Task<ActionResult<Observation>> CreateObservation(Observation observation)
         {
             _context.Observations.Add(observation);
             await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("GetObservation", new { id = observation.ObservationId }, observation);
+            return Created(observation.ObservationId.ToString(), observation);
         }
 
     }
