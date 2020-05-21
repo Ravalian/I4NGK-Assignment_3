@@ -3,25 +3,30 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <ul id="obList"></ul>
+    
 </head>
 <body>
+    <ul id="obList"></ul>
+    <script src="https://unpkg.com/@microsoft/signalr@3.0.1/dist/browser/signalr.js" crossorigin="anonymous"></script>
     <script>
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("/oHub").build();
+
         var data
         fetch("https://localhost:44309/api/observations", {
             method: 'GET',
-            headers: {'content-Type': 'application/json'}
+            headers: { 'content-Type': 'application/json' }
         })
             .then(response => { data = JSON.parse(response) })
             .catch(error => alert(error))
-        
+
         //document.getElementById("obList").appendChild(data)
         console.log(data)
-        var connection = new signalR.HubConnectionBuilder().withUrl("/oHub").build();
 
-        
 
-        connection.on("observationUpdate", function (temp) {
+
+
+        connection.on("recieveObservation", function (temp) {
 
             var li = document.createElement("li");
             li.textContent = temp;

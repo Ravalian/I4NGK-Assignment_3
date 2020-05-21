@@ -31,10 +31,10 @@ namespace VejrStation.Controllers
         [ActionName("AllObservations")]
         public async Task<ActionResult<IEnumerable<Observation>>> GetObservations()
         {
-            var temp = await _context.Observations.ToListAsync();
+            /*var temp = await _context.Observations.ToListAsync();
             await _oHubContext.Clients.All.SendAsync("observationUpdate", temp);
-            return Ok();
-            //return await _context.Observations.ToListAsync();
+            return Ok();*/
+            return await _context.Observations.ToListAsync();
         }
 
         //Get to see the observation specified by a specific id

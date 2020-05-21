@@ -8,9 +8,10 @@ namespace VejrStation.Hubs
 {
     public class OHub : Hub
     {
-        public async Task SendMessage(string user, string message)
+        public async Task observationUpdate(string temp)
         {
-            await Clients.All.SendAsync("RecieveMessage", user, message);
+            await Clients.All.SendAsync("recieveObservation",temp);
+            
         }
     }
 }
