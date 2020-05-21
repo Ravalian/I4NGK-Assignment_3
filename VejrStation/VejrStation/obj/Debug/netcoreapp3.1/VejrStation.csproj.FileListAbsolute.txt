@@ -274,3 +274,5 @@ C:\Users\emilw\OneDrive\Dokumenter\I4NGK-Assignment_3\VejrStation\VejrStation\ob
 C:\Users\emilw\OneDrive\Dokumenter\I4NGK-Assignment_3\VejrStation\VejrStation\obj\Debug\netcoreapp3.1\staticwebassets\VejrStation.StaticWebAssets.Manifest.cache
 C:\Users\emilw\OneDrive\Dokumenter\I4NGK-Assignment_3\VejrStation\VejrStation\obj\Debug\netcoreapp3.1\staticwebassets\VejrStation.StaticWebAssets.xml
 C:\Users\emilw\OneDrive\Dokumenter\I4NGK-Assignment_3\VejrStation\VejrStation\obj\Debug\netcoreapp3.1\VejrStation.genruntimeconfig.cache
+C:\Users\Nicolai\Desktop\School\NGK\I4NGK-Assignment_3\VejrStation\VejrStation\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+C:\Users\Nicolai\Desktop\School\NGK\I4NGK-Assignment_3\VejrStation\VejrStation\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
