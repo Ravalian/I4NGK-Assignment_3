@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <ul id="obList"></ul>
+</head>
+<body>
+    <script>
+        var data
+        fetch("https://localhost:44309/api/observations", {
+            method: 'GET',
+            headers: {'content-Type': 'application/json'}
+        })
+            .then(response => { data = JSON.parse(response) })
+            .catch(error => alert(error))
+        
+        //document.getElementById("obList").appendChild(data)
+        console.log(data)
+        var connection = new signalR.HubConnectionBuilder().withUrl("/oHub").build();
+
+        
+
+        connection.on("observationUpdate", function (temp) {
+
+            var li = document.createElement("li");
+            li.textContent = temp;
+            document.getElementById("obList").appendChild(li);
+        });
+
+
+        connection.start().then(function () {
+            console.log("Connected");
+        }).catch(function (err) {
+            console.error(err.toString());
+        });
+    </script>
+</body>
+</html>

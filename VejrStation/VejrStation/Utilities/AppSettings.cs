@@ -7,6 +7,6 @@ namespace VejrStation.Utilities
 {
     public class AppSettings
     {
-        public string SecretKey { get; set; }
+        public string Secret { get; set; }
     }
 }

@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nicolai\\Desktop\\School\\NGK\\I4NGK-Assignment_3\\NGK_VejrStation\\NGK_VejrStation\\NGK_VejrStation.csproj": {}
+    "C:\\Users\\emilw\\OneDrive\\Dokumenter\\I4NGK-Assignment_3\\NGK_VejrStation\\NGK_VejrStation\\NGK_VejrStation.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nicolai\\Desktop\\School\\NGK\\I4NGK-Assignment_3\\NGK_VejrStation\\NGK_VejrStation\\NGK_VejrStation.csproj": {
+    "C:\\Users\\emilw\\OneDrive\\Dokumenter\\I4NGK-Assignment_3\\NGK_VejrStation\\NGK_VejrStation\\NGK_VejrStation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nicolai\\Desktop\\School\\NGK\\I4NGK-Assignment_3\\NGK_VejrStation\\NGK_VejrStation\\NGK_VejrStation.csproj",
+        "projectUniqueName": "C:\\Users\\emilw\\OneDrive\\Dokumenter\\I4NGK-Assignment_3\\NGK_VejrStation\\NGK_VejrStation\\NGK_VejrStation.csproj",
         "projectName": "NGK_VejrStation",
-        "projectPath": "C:\\Users\\Nicolai\\Desktop\\School\\NGK\\I4NGK-Assignment_3\\NGK_VejrStation\\NGK_VejrStation\\NGK_VejrStation.csproj",
-        "packagesPath": "C:\\Users\\Nicolai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nicolai\\Desktop\\School\\NGK\\I4NGK-Assignment_3\\NGK_VejrStation\\NGK_VejrStation\\obj\\",
+        "projectPath": "C:\\Users\\emilw\\OneDrive\\Dokumenter\\I4NGK-Assignment_3\\NGK_VejrStation\\NGK_VejrStation\\NGK_VejrStation.csproj",
+        "packagesPath": "C:\\Users\\emilw\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emilw\\OneDrive\\Dokumenter\\I4NGK-Assignment_3\\NGK_VejrStation\\NGK_VejrStation\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Nicolai\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\emilw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -59,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

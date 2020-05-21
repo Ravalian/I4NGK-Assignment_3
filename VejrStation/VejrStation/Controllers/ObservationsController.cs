@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VejrStation.Database;
 using VejrStation.Entities;
+using VejrStation.Hubs;
 
 namespace VejrStation.Controllers
 {
@@ -16,9 +18,11 @@ namespace VejrStation.Controllers
     public class ObservationsController : ControllerBase
     {
         private readonly MyDBContext _context;
+        private readonly IHubContext<OHub> _oHubContext;
 
-        public ObservationsController(MyDBContext context)
+        public ObservationsController(IHubContext<OHub> ohub, MyDBContext context)
         {
+            _oHubContext = ohub;
             _context = context;
         }
 
@@ -27,7 +31,10 @@ namespace VejrStation.Controllers
         [ActionName("AllObservations")]
         public async Task<ActionResult<IEnumerable<Observation>>> GetObservations()
         {
-            return await _context.Observations.ToListAsync();
+            var temp = await _context.Observations.ToListAsync();
+            await _oHubContext.Clients.All.SendAsync("observationUpdate", temp);
+            return Ok();
+            //return await _context.Observations.ToListAsync();
         }
 
         //Get to see the observation specified by a specific id
@@ -102,7 +109,7 @@ namespace VejrStation.Controllers
             return observations;
         }
 
-        [Authorize] //Can only crete new observation if you are logged in.
+        //[Authorize] //Can only crete new observation if you are logged in.
         [HttpPost]
         public async Task<ActionResult<Observation>> CreateObservation(Observation observation)
         {

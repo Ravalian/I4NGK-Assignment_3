@@ -52,9 +52,16 @@
         <tbody id="commsLog">
         </tbody>
     </table>
-
+    <input id="dateObserved" />
+    <input id="locationName" />
+    <input id="locationLat" />
+    <input id="locationLot" />
+    <input id="temprature" />
+    <input id="humidity" />
+    <input id="airPressure" />
+    <input id="sendBtn" value="Send" type="button" />
     <script>
-    var connectionUrl = document.getElementById("connectionUrl");
+        var connectionUrl = document.getElementById("connectionUrl");
         var connectButton = document.getElementById("connectButton");
         var stateLabel = document.getElementById("stateLabel");
         var sendMessage = document.getElementById("sendMessage");
@@ -164,5 +171,19 @@
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;');
         }</script>
+
+    <script type="text/javascript">
+        $(func(){
+            var connection = $.hubConnection();
+            var hub = connection.createHubProxy("helloWorld");
+            hub.on("hello", func(greeting){
+                alert(greeting+ "hey");
+        });
+        connection.start().done(func(){
+            hub.invoke("Hey");
+        });
+                });
+    </script>
+
 </body>
 </html>
