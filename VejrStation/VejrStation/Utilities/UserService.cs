@@ -16,7 +16,6 @@ namespace VejrStation.Utilities
     public interface IUserService
     {
         User Authenticate(string username, string password);
-        //IEnumerable<User> GetAll();
     }
     
     public class UserService : IUserService
@@ -30,6 +29,7 @@ namespace VejrStation.Utilities
             _context = context;
         }
 
+        //Bliver anvendt til 2nd try Authentication
         public User Authenticate(string username, string password)
         {
             //Checking if user exists in database
@@ -53,21 +53,10 @@ namespace VejrStation.Utilities
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
 
-
-
             //Makes sure the password is not returned for show
             user.Password = null;
 
             return user;
         }
-
-        //public IEnumerable<User> GetAll()
-        //{
-        //    return _context.Users.Select(x =>
-        //    {
-        //        x.Password = null;
-        //        return x;
-        //    });
-        //}
     }
 }
