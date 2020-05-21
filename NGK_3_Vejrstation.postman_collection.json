@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "fb3fc5c9-5ed7-466f-af4c-eb287bc389f9",
+		"name": "NGK_3_Vejrstation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login_User(GetToken)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Username\" : \"HansG\",\n\t\"Password\" : \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44309/api/users/Authenticate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44309",
+					"path": [
+						"api",
+						"users",
+						"Authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post_User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"FirstName\" : \"Tobber\",\n\t\"Lastname\" : \"Goldengun\",\n\t\"Username\" : \"TobG\",\n\t\"Password\" : \"123\",\n\t\"Token\" : null\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44309/api/users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44309",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post_Observation(NeedToken)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYmYiOjE1ODk3OTcwODAsImV4cCI6MTU4OTgwMDY4MCwiaWF0IjoxNTg5Nzk3MDgwfQ.PggQ-_9Z2Pxo8ovddo0ITxyjklSWcz1kRLWdKQIaynQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"dateObserved\": \"2020-05-14T19:21:31.0804626\",\r\n        \"locationName\": \"Ebeltoft\",\r\n        \"locationLat\": 56.19,\r\n        \"locationLot\": 10.67,\r\n        \"temperature\": 9.8,\r\n        \"humidity\": 76,\r\n        \"airPressure\": 1015.1\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44309/api/observations",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44309",
+					"path": [
+						"api",
+						"observations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_ListUsers(NeedToken)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_SpecificUser(NeedToken)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYmYiOjE1ODk3OTcwODAsImV4cCI6MTU4OTgwMDY4MCwiaWF0IjoxNTg5Nzk3MDgwfQ.PggQ-_9Z2Pxo8ovddo0ITxyjklSWcz1kRLWdKQIaynQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44309/api/users/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44309",
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_ObservationsByDate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44309/api/observations/date?date=2020-05-11",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44309",
+					"path": [
+						"api",
+						"observations",
+						"date"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-05-11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Observation3Latest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44309/api/observations/latest",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44309",
+					"path": [
+						"api",
+						"observations",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_ObservationsByStartStopDate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44309/api/observations/start/stop?date1=2020-05-11&date2=2020-05-12",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44309",
+					"path": [
+						"api",
+						"observations",
+						"start",
+						"stop"
+					],
+					"query": [
+						{
+							"key": "date1",
+							"value": "2020-05-11"
+						},
+						{
+							"key": "date2",
+							"value": "2020-05-12"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
