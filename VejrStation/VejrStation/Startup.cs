@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using VejrStation.Database;
 using VejrStation.Utilities;
+using VejrStation.Hubs;
 
 //using //VejrStation.Database;
 
@@ -42,7 +43,12 @@ namespace VejrStation
             services.AddDbContext<MyDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            //MvcOptions.EnableEndpointRouting = false;
+            services.AddMvc(option => option.EnableEndpointRouting = false);
+
+
             services.AddControllers();
+            services.AddSignalR();
 
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
@@ -50,7 +56,7 @@ namespace VejrStation
 
             // configure jwt authentication
             var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.SecretKey);
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
                 {
                     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -80,11 +86,19 @@ namespace VejrStation
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
+
+            }
 
             app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             app.UseRouting();
-
+            app.UseCookiePolicy();
+            app.UseSignalR(routes => { routes.MapHub<OHub>("/oHub"); });
+            app.UseMvc();
             // global cors policy
             app.UseCors(x => x
                 .AllowAnyOrigin()

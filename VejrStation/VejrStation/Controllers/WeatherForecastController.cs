@@ -36,9 +36,9 @@ namespace VejrStation.Controllers
             .ToArray();
         }
 
-        public IActionResult Index()
+        /*public IActionResult Index()
         {
             return View();
-        }
+        }*/     
     }
 }
