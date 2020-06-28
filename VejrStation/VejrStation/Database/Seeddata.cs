@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VejrStation.Entities;
+using static BCrypt.Net.BCrypt;
 
 namespace VejrStation.Database
 {
     public static class Seeddata
     {
+        public const int BcryptWorkfactor = 10;
+
         public static void SeedData(MyDBContext context)
         {
             context.Database.EnsureCreated();
@@ -25,35 +28,35 @@ namespace VejrStation.Database
                         FirstName = "Hans",
                         LastName = "Goldengun",
                         Username = "HansG",
-                        Password = "1234"
+                        Password = HashPassword("1234", BcryptWorkfactor)
                     },
                 new User
                     {
                         FirstName = "Frans",
                         LastName = "Goldengun",
                         Username = "FransG",
-                        Password = "1234"
-                    },
+                        Password = HashPassword("1234", BcryptWorkfactor)
+                },
                 new User
                 {
                     FirstName = "Torben",
                     LastName = "Swagger",
                     Username = "Swag",
-                    Password = "1234"
+                    Password = HashPassword("1234", BcryptWorkfactor)
                 },
                 new User
                 {
                     FirstName = "Ulla",
                     LastName = "Knudsen",
                     Username = "Ulla",
-                    Password = "1234"
+                    Password = HashPassword("1234", BcryptWorkfactor)
                 },
                 new User
                 {
                     FirstName = "Johnny",
                     LastName = "Bravo",
                     Username = "Bravo",
-                    Password = "1234"
+                    Password = HashPassword("1234", BcryptWorkfactor)
                 }
             );
             context.SaveChanges();

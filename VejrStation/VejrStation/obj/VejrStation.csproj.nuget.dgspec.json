@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nicolai\\Desktop\\School\\NGK\\I4NGK-Assignment_3\\VejrStation\\VejrStation\\VejrStation.csproj": {}
+    "C:\\Indbox\\Uni\\I4NGK\\I4NGK-Assignment_3\\VejrStation\\VejrStation\\VejrStation.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nicolai\\Desktop\\School\\NGK\\I4NGK-Assignment_3\\VejrStation\\VejrStation\\VejrStation.csproj": {
+    "C:\\Indbox\\Uni\\I4NGK\\I4NGK-Assignment_3\\VejrStation\\VejrStation\\VejrStation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nicolai\\Desktop\\School\\NGK\\I4NGK-Assignment_3\\VejrStation\\VejrStation\\VejrStation.csproj",
+        "projectUniqueName": "C:\\Indbox\\Uni\\I4NGK\\I4NGK-Assignment_3\\VejrStation\\VejrStation\\VejrStation.csproj",
         "projectName": "VejrStation",
-        "projectPath": "C:\\Users\\Nicolai\\Desktop\\School\\NGK\\I4NGK-Assignment_3\\VejrStation\\VejrStation\\VejrStation.csproj",
-        "packagesPath": "C:\\Users\\Nicolai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nicolai\\Desktop\\School\\NGK\\I4NGK-Assignment_3\\VejrStation\\VejrStation\\obj\\",
+        "projectPath": "C:\\Indbox\\Uni\\I4NGK\\I4NGK-Assignment_3\\VejrStation\\VejrStation\\VejrStation.csproj",
+        "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
+        "outputPath": "C:\\Indbox\\Uni\\I4NGK\\I4NGK-Assignment_3\\VejrStation\\VejrStation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Nicolai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alexa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -42,6 +43,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.4, )"
@@ -101,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
