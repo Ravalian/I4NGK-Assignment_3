@@ -54,6 +54,7 @@ namespace VejrStation.Controllers
             return user;
         }
 
+        //CreateUser
         [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<User>> CreateUser(User user)
