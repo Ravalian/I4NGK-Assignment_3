@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using VejrStation.Database;
 using VejrStation.Entities;
 using VejrStation.Utilities;
+using static BCrypt.Net.BCrypt;
 
 namespace VejrStation.Controllers
 {
@@ -51,6 +52,9 @@ namespace VejrStation.Controllers
                 return NotFound();
             }
 
+            //Makes sure the password is not returned for show
+            user.Password = null;
+
             return user;
         }
 
@@ -71,43 +75,29 @@ namespace VejrStation.Controllers
         public async Task<ActionResult<TokenDto>> Authenticate([FromBody]User userParam)
         {
             //****1st try for authentication****//
-            var user = await _context.Users.SingleOrDefaultAsync(a => a.Username == userParam.Username && a.Password == userParam.Password);
+            var user = await _context.Users.SingleOrDefaultAsync(a => a.Username == userParam.Username);
 
             if (user != null)
             {
-                var token = new TokenDto();
-                token.JWT = GenerateToken(user);
-                return token;
+                var validPwd = Verify(userParam.Password, user.Password);
+                if (validPwd)
+                {
+                    var token = new TokenDto();
+                    token.JWT = GenerateToken(user);
+                    return token;
+                }
             }
-            else
-            {
-                return BadRequest(new { message = "Username or password incorrect" });
-            }
-
-            //****2nd try for authentication****//
-            //var user = _userService.Authenticate(userParam.Username, userParam.Password);
-
-            //if (user == null)
-            //    return BadRequest(new { message = "Username or password incorrect" });
-
-            //return Ok(user);
+            return BadRequest(new { message = "Username or password incorrect" });
         }
 
 
         //bliver anvendt til 1st try Authentication
         private string GenerateToken(User user)
         {
-            //Claim roleClaim;
-            //if (isSomething)
-            //    roleClaim = new Claim("Role", "Admin");
-            //else
-            //    roleClaim = new Claim("Role", "Worker");
-
             var claims = new Claim[]
             {
-                new Claim("Username", user.Username),
-                new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),     
-                // roleClaim,
+                new Claim("UserName", user.Username),
+                new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
                 new Claim("UserId", user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddDays(1)).ToUnixTimeSeconds().ToString()),
             };
@@ -115,7 +105,7 @@ namespace VejrStation.Controllers
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var token = new JwtSecurityToken(
                 new JwtHeader(new SigningCredentials(
-                    new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)),
+                    new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha384)),
                 new JwtPayload(claims));
 
             return new JwtSecurityTokenHandler().WriteToken(token);

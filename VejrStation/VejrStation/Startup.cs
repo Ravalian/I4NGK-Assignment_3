@@ -75,6 +75,7 @@ namespace VejrStation
                     };
                 });
 
+
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
         }
@@ -104,7 +105,9 @@ namespace VejrStation
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-            
+
+            Seeddata.SeedData(context);
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -112,8 +115,6 @@ namespace VejrStation
             {
                 endpoints.MapControllers();
             });
-
-            Seeddata.SeedData(context);
         }
     }
 }
