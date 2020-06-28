@@ -106,10 +106,35 @@
 		{
 			"name": "Get_ListUsers(NeedToken)",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IkhhbnNHIiwiZ2l2ZW5fbmFtZSI6IkhhbnMiLCJVc2VySWQiOiIxIiwiZXhwIjoiMTU5MDIyMTgwOSJ9.oUCqVfEhOlGYImMSzYQTYjMHvOisn5naG_B216e5LvM",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYmYiOjE1OTAwODgwMDQsImV4cCI6MTU5MDY5MjgwNCwiaWF0IjoxNTkwMDg4MDA0fQ.xUEz8hGd_py1dyV0MqpV3Vx48dWoCO2ubT8kkQAz7fs",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": ""
+					"raw": "https://localhost:44309/api/users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44309",
+					"path": [
+						"api",
+						"users"
+					]
 				}
 			},
 			"response": []
