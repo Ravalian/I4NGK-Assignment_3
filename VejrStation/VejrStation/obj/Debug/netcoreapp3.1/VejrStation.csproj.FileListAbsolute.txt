@@ -417,3 +417,4 @@ C:\Indbox\Uni\I4NGK\I4NGK-Assignment_3\VejrStation\VejrStation\obj\Debug\netcore
 C:\Indbox\Uni\I4NGK\I4NGK-Assignment_3\VejrStation\VejrStation\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
 C:\Indbox\Uni\I4NGK\I4NGK-Assignment_3\VejrStation\VejrStation\obj\Debug\netcoreapp3.1\VejrStation.csproj.CoreCompileInputs.cache
 C:\Indbox\Uni\I4NGK\I4NGK-Assignment_3\VejrStation\VejrStation\obj\Debug\netcoreapp3.1\VejrStation.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Nicolai\Desktop\School\NGK\I4NGK-Assignment_3\VejrStation\VejrStation\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
