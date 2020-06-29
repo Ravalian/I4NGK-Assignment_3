@@ -27,6 +27,7 @@ namespace VejrStation.Controllers
         private readonly MyDBContext _context;
         private IUserService _userService;
         private readonly AppSettings _appSettings;
+        public const int BcryptWorkfactor = 10;
 
         public UsersController(MyDBContext context, IUserService userService, IOptions<AppSettings> appSettings)
         {
@@ -42,7 +43,7 @@ namespace VejrStation.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetUser")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
@@ -63,10 +64,15 @@ namespace VejrStation.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> CreateUser(User user)
         {
-            _context.Users.Add(user);
+            User tempUser = user;
+            tempUser.Password = HashPassword(user.Password, BcryptWorkfactor);
+            _context.Users.Add(tempUser);
             await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("GetUser", new {id = user.Id}, user);
+            var token = new TokenDto();
+            token.JWT = GenerateToken(tempUser);
+
+            return CreatedAtAction("GetUser", new {id = tempUser.Id}, token);
         }
 
         [AllowAnonymous]
