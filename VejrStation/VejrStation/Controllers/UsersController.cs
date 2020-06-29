@@ -19,24 +19,21 @@ using static BCrypt.Net.BCrypt;
 
 namespace VejrStation.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly MyDBContext _context;
-        private IUserService _userService;
         private readonly AppSettings _appSettings;
         public const int BcryptWorkfactor = 10;
 
-        public UsersController(MyDBContext context, IUserService userService, IOptions<AppSettings> appSettings)
+        public UsersController(MyDBContext context, IOptions<AppSettings> appSettings)
         {
             _context = context;
-            _userService = userService;
             _appSettings = appSettings.Value;
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
@@ -105,7 +102,7 @@ namespace VejrStation.Controllers
                 new Claim("UserName", user.Username),
                 new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
                 new Claim("UserId", user.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddDays(1)).ToUnixTimeSeconds().ToString()),
+                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddDays(2)).ToUnixTimeSeconds().ToString())
             };
 
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);

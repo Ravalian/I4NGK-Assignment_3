@@ -14,7 +14,7 @@ using VejrStation.Hubs;
 namespace VejrStation.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController, Authorize]
     public class ObservationsController : ControllerBase
     {
         private readonly MyDBContext _context;
@@ -109,7 +109,7 @@ namespace VejrStation.Controllers
             return observations;
         }
 
-        //[Authorize] //Can only crete new observation if you are logged in.
+        //Can only crete new observation if you are logged in.
         [HttpPost]
         public async Task<ActionResult<Observation>> CreateObservation(Observation observation)
         {
